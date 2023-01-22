@@ -1,15 +1,12 @@
 FROM continuumio/miniconda3
 USER root
 
-ARG CI_JOB_TOKEN
-ARG APP_VERSION
-ENV APP_VERSION ${APP_VERSION:-0.0.0}
 ENV TRANSFORMERS_OFFLINE 1
 
 WORKDIR /app
 
 # miniconda install
-RUN conda install -c conda-forge transformers numpy
+RUN conda install -c conda-forge transformers
 
 COPY hugging_face_sentiment_test /app/hugging_face_sentiment_test
 
