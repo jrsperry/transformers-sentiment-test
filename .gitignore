@@ -1,0 +1,15 @@
+# Mac OS Stuff
+.DS_Store
+
+# IntelliJ Stuff
+.idea/
+
+# Python Stuff
+build/
+# dist/ # commented out for now because this is where we publish the package
+nlp_processor.egg-info/
+__pycache__
+
+temp.py
+/venv/
+/temp
