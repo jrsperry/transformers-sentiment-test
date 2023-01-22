@@ -1,0 +1,22 @@
+FROM bitnami/pytorch-intel:1.10.2
+
+USER root
+
+ARG CI_JOB_TOKEN
+ARG APP_VERSION
+ENV APP_VERSION ${APP_VERSION:-0.0.0}
+ENV TRANSFORMERS_OFFLINE 1
+ENV TRANSFORMERS_CACHE ./resources/cache
+
+WORKDIR /app
+
+COPY docker_requirements.txt /app
+RUN pip install --upgrade pip && \
+    pip uninstall typing -y && \
+    pip install -r docker_requirements.txt
+
+COPY hugging_face_sentiment_test /app/hugging_face_sentiment_test
+
+ENV PYTHONPATH /app
+
+CMD python hugging_face_sentiment_test/test_models.py
