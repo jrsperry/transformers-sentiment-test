@@ -16,11 +16,10 @@ logger.setLevel(log_level)
 # if you don't have the model downloaded, set MODEL_PATH to 'cardiffnlp/twitter-roberta-base-sentiment'
 # and set TRANSFORMERS_OFFLINE to 0
 os.environ['TRANSFORMERS_OFFLINE'] = '1'
-MODEL_PATH = "./hugging_face_sentiment_test/resources/model"
+MODEL_PATH = os.environ.get('MODEL_NAME', "./hugging_face_sentiment_test/resources/model")
+logger.info(f"loading model from path: {MODEL_PATH}")
 
-logger.info("loading model")
-classifier = pipeline(task="sentiment-analysis", model=MODEL_PATH, tokenizer=MODEL_PATH, max_length=512,
-                      truncation=True)
+classifier = pipeline(task="sentiment-analysis", model=MODEL_PATH, tokenizer=MODEL_PATH, max_length=512, truncation=True)
 
 number_sentences = os.environ.get('NUMBER_SENTENCES', '100')
 number_sentences_int = int(number_sentences)
