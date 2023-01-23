@@ -1,4 +1,4 @@
-FROM bitnami/pytorch-intel:1.12
+FROM tensorflow/tensorflow:2.11.0
 
 USER root
 

@@ -8,7 +8,8 @@ WORKDIR /app
 # miniconda install
 RUN conda install -c conda-forge transformers
 
-COPY hugging_face_sentiment_test /app/hugging_face_sentiment_test
+COPY hugging_face_sentiment_test/resources /app/hugging_face_sentiment_test/resources
+COPY hugging_face_sentiment_test/test_models.py /app/hugging_face_sentiment_test
 
 ENV PYTHONPATH /app
 
